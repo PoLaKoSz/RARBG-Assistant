@@ -1,1 +1,2 @@
-console.log("Hello, world!");
+const rarbgAssistant = new RarbgAssistant();
+rarbgAssistant.initalize();

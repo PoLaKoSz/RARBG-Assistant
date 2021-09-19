@@ -9,6 +9,7 @@ const outDir = 'build';
 
 const minifyAndConcatJs = () => {
   return gulp.src([
+    `${sourceDir}/js/*.js`,
     `${sourceDir}/index.js`,
   ]).pipe(concat('source.js'))
     .pipe(minify())

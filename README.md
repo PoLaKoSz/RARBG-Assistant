@@ -2,6 +2,11 @@
 
 Userscript for RARBG.to to make it more user friendly.
 
+## Features
+
+- Trailers page
+  - [x] Prevent page jump to the top when opening trailer window
+
 ## How to use
 
 1) Install [Tampermonkey](https://www.tampermonkey.net)
