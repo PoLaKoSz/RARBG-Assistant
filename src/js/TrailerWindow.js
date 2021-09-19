@@ -8,4 +8,9 @@ class TrailerWindow {
     document.body.appendChild(this.trailerModalNode);
     this.trailerModalNode.classList.add("trailer-modal");
   }
+
+  close() {
+    $(this.trailerModalNode).jqmHide();
+    this.trailerModalNode.innerHTML = "";
+  }
 }

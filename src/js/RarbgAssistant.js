@@ -10,6 +10,13 @@ class RarbgAssistant {
     document.addEventListener('DOMContentLoaded', function() {
       const trailerWindow = new TrailerWindow();
       trailerWindow.float();
+
+      document.onkeydown = function(event) {
+        const keyDetector = new KeyDetector();
+        if (keyDetector.isEscPressed(event)) {
+          trailerWindow.close();
+        }
+      };
     });
   }
 }

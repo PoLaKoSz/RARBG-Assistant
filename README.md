@@ -7,6 +7,7 @@ Userscript for RARBG.to to make it more user friendly.
 - Trailers page
   - [x] Prevent page jump to the top when opening trailer window
   - [x] Keep trailer window always in the center of the screen
+  - [x] Close trailer window with Esc
 
 ## How to use
 
