@@ -6,5 +6,10 @@ class RarbgAssistant {
 
   initalize() {
     this.requestCatcher.register("/ajax.php?mode=trailers&mode2=list", this.trailersPage);
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const trailerWindow = new TrailerWindow();
+      trailerWindow.float();
+    });
   }
 }
