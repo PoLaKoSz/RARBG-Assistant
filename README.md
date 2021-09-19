@@ -8,6 +8,7 @@ Userscript for RARBG.to to make it more user friendly.
   - [x] Prevent page jump to the top when opening trailer window
   - [x] Keep trailer window always in the center of the screen
   - [x] Close trailer window with Esc
+  - [x] Search torrents with the same name as the trailer
 
 ## How to use
 

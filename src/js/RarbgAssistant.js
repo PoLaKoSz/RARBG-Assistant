@@ -10,6 +10,12 @@ class RarbgAssistant {
     document.addEventListener('DOMContentLoaded', function() {
       const trailerWindow = new TrailerWindow();
       trailerWindow.float();
+      trailerWindow.onOpen([
+        {
+          instance: trailerWindow,
+          method: trailerWindow.addSearchButton,
+        },
+      ]);
 
       document.onkeydown = function(event) {
         const keyDetector = new KeyDetector();
