@@ -11,8 +11,7 @@ class TrailerWindow {
   }
 
   close() {
-    $(this.trailerModalNode).jqmHide();
-    this.trailerModalNode.innerHTML = "";
+    this.getCloseFunction()("#");
   }
 
   onOpen(actions) {
@@ -72,7 +71,7 @@ class TrailerWindow {
   
   attachEventToWindowClose() {
     const eventSubscribers = this.closeEventSubscribers;
-    const proxied = window.closejqm;
+    const proxied = this.getCloseFunction();
     window.closejqm = function() {
       eventSubscribers.forEach(subscriber => {
         subscriber.method(subscriber.instance);
@@ -80,5 +79,14 @@ class TrailerWindow {
 
       return proxied.apply(this, arguments);
     };
+  }
+
+  getCloseFunction() {
+    const closeFunction = window.closejqm;
+    if (closeFunction === undefined) {
+      throw "RARBG developers removed closejqm global function!";
+    }
+
+    return closeFunction;
   }
 }
