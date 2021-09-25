@@ -50,7 +50,12 @@ class TrailerWindow {
   fixOverlayForAdblockers() {
     const overlayNode = document.querySelector(".jqmOverlay");
     overlayNode.classList.remove("jqmOverlay");
+    overlayNode.setAttribute("id", "jqmOverlay");
     overlayNode.style.backgroundColor = "#000";
+    const instance = this.instance;
+    overlayNode.onclick = function() {
+      instance.close();
+    }
   }
 
   hideScrollbar() {
