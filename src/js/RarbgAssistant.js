@@ -18,7 +18,17 @@ class RarbgAssistant {
         {
           instance: trailerWindow,
           method: trailerWindow.fixOverlayForAdblockers,
-        }
+        },
+        {
+          instance: trailerWindow,
+          method: trailerWindow.hideScrollbar,
+        },
+      ]);
+      trailerWindow.onClose([
+        {
+          instance: trailerWindow,
+          method: trailerWindow.showScrollbar,
+        },
       ]);
 
       document.onkeydown = function(event) {

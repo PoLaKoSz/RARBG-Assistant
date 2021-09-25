@@ -1,7 +1,8 @@
 class TrailerWindow {
   constructor() {
     this.trailerModalNode = document.querySelector("#trailer_modal");
-    this.eventSubscribers = [];
+    this.openEventSubscribers = [];
+    this.closeEventSubscribers = [];
   }
 
   float() {
@@ -15,7 +16,7 @@ class TrailerWindow {
   }
 
   onOpen(actions) {
-    this.eventSubscribers = actions;
+    this.openEventSubscribers = actions;
     this.attachEventToWindowOpen();
   }
 
@@ -35,7 +36,7 @@ class TrailerWindow {
 
   attachEventToWindowOpen() {
     const proxied = jQuery.fn.jqm;
-    const eventSubscribers = this.eventSubscribers;
+    const eventSubscribers = this.openEventSubscribers;
     jQuery.fn.jqm = function() {
       arguments[0]['onLoad'] = function() {
         eventSubscribers.forEach(subscriber => {
@@ -51,5 +52,33 @@ class TrailerWindow {
     const overlayNode = document.querySelector(".jqmOverlay");
     overlayNode.classList.remove("jqmOverlay");
     overlayNode.style.backgroundColor = "#000";
+  }
+
+  hideScrollbar() {
+    const originalWidth = document.body.clientWidth;
+    document.body.style.overflow = "hidden";
+    document.body.style.width = `${originalWidth}px`;
+  }
+
+  showScrollbar() {
+    document.body.style.overflow = "visible";
+    document.body.style.width = "auto";
+  }
+
+  onClose(actions) {
+    this.closeEventSubscribers = actions;
+    this.attachEventToWindowClose();
+  }
+  
+  attachEventToWindowClose() {
+    const eventSubscribers = this.closeEventSubscribers;
+    const proxied = window.closejqm;
+    window.closejqm = function() {
+      eventSubscribers.forEach(subscriber => {
+        subscriber.method(subscriber.instance);
+      });
+
+      return proxied.apply(this, arguments);
+    };
   }
 }
