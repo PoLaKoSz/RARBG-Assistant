@@ -1,12 +1,14 @@
 // ==UserScript==
 // @name         RARBG Assistant
 // @namespace    https://github.com/PoLaKoSz
-// @version      1.6.0
+// @version      1.7.0
 // @description  Userscript for RARBG.to to make it more user friendly.
 // @author       Tom PoLáKoSz
 // @icon         https://raw.githubusercontent.com/PoLaKoSz/RARBG-Assistant/master/assets/icon.png
 // @run-at       document-start
 // @include      https://rarbg.to/trailers.php*
+// @downloadURL  https://greasyfork.org/scripts/432946-rarbg-assistant/code/RARBG%20Assistant.user.js
+// @updateURL    https://greasyfork.org/scripts/432946-rarbg-assistant/code/RARBG%20Assistant.user.js
 // ==/UserScript==
 
 'use strict';
