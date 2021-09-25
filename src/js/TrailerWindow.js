@@ -46,4 +46,10 @@ class TrailerWindow {
       return proxied.apply(this, arguments);
     };
   }
+
+  fixOverlayForAdblockers() {
+    const overlayNode = document.querySelector(".jqmOverlay");
+    overlayNode.classList.remove("jqmOverlay");
+    overlayNode.style.backgroundColor = "#000";
+  }
 }

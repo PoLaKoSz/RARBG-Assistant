@@ -15,6 +15,10 @@ class RarbgAssistant {
           instance: trailerWindow,
           method: trailerWindow.addSearchButton,
         },
+        {
+          instance: trailerWindow,
+          method: trailerWindow.fixOverlayForAdblockers,
+        }
       ]);
 
       document.onkeydown = function(event) {
