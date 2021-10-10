@@ -1,6 +1,6 @@
 {
   "name": "rarbg-assistant",
-  "version": "1.0.0",
+  "version": "1.8.3",
   "description": "Userscript for RARBG.to to make it more user friendly.",
   "dependencies": {},
   "devDependencies": {
@@ -10,7 +10,8 @@
     "gulp-minify": "^3.1.0"
   },
   "scripts": {
-    "build": "gulp build"
+    "prodBuild": "gulp prodBuild",
+    "greasyForkBuild": "gulp greasyForkBuild"
   },
   "repository": {
     "type": "git",

@@ -13,7 +13,7 @@ Userscript for RARBG.to to make it more user friendly.
 ## How to use it
 
 1) Install [Tampermonkey](https://www.tampermonkey.net)
-2) [Open GreasyFork](https://greasyfork.org/en/scripts/432946-rarbg-assistant) and click the `Install this script` button on it _(or copy the content of the [index.js](https://raw.githubusercontent.com/PoLaKoSz/RARBG-Assistant/master/index.js) as a new script to Tampermonkey)_
+2) [Open GreasyFork](https://greasyfork.org/en/scripts/432946-rarbg-assistant) and click the `Install this script` button on it _(or copy the content of the [index.js](https://raw.githubusercontent.com/PoLaKoSz/RARBG-Assistant/master/index.min.js) as a new script to Tampermonkey)_
 3) Refresh https://rarbg.to if You already opened it
 
 ## Development

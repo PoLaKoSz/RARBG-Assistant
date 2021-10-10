@@ -7,22 +7,37 @@ const minify = require('gulp-minify');
 const sourceDir = 'src';
 const outDir = 'build';
 
-const minifyAndConcatJs = () => {
+const concatJs = () => {
   return gulp.src([
     `${sourceDir}/js/*.js`,
     `${sourceDir}/index.js`,
   ]).pipe(concat('source.js'))
-    .pipe(minify())
     .pipe(gulp.dest(outDir));
 }
 
-const prependUserScript = () => {
+const minifyJs = () => {
+  return gulp.src([
+    `${outDir}/source.js`,
+  ]).pipe(minify())
+
+    .pipe(gulp.dest(outDir));
+}
+
+const prependUserScript = (sourceFileName, destFileName) => {
   return gulp.src([
     `${sourceDir}/userscript`,
-    `${outDir}/source-min.js`,
+    `${outDir}/${sourceFileName}`,
   ])
-    .pipe(concat('index.js'))
+    .pipe(concat(destFileName))
     .pipe(gulp.dest('./'));
+}
+
+const prependUserScriptToMinifiedCode = () => {
+  return prependUserScript("source-min.js", "index.min.js");
+}
+
+const prependUserScriptToCode = () => {
+  return prependUserScript("source.js", "index.js");
 }
 
 const minifyCSS = () => {
@@ -31,7 +46,7 @@ const minifyCSS = () => {
     .pipe(gulp.dest(outDir));
 }
 
-const addCSS = () => {
+const addCssTo = (destFileName) => {
   const css = fs.readFileSync(`${outDir}/style.css`, 'utf8');
 
   const fileContent = `
@@ -42,16 +57,35 @@ document.head.appendChild(styleNode);`;
   fs.writeFileSync(`${outDir}/CSSInjector.js`, fileContent);
 
   return gulp.src([
-    `${outDir}/source-min.js`,
+    `${outDir}/${destFileName}`,
     `${outDir}/CSSInjector.js`,
-  ]).pipe(concat('source.js'))
-    .pipe(minify())
+  ]).pipe(concat(destFileName))
     .pipe(gulp.dest(outDir));
 }
 
-exports.build = gulp.series(
-  minifyAndConcatJs,
+const addCssToMinifiedCode = () => {
+  return addCssTo("source-min.js");
+}
+
+const addCssToCode = () => {
+  return addCssTo("source.js");
+}
+
+const greasyForkBuild = gulp.series(
+  concatJs,
   minifyCSS,
-  addCSS,
-  prependUserScript,
+  addCssToCode,
+  prependUserScriptToCode,
 );
+
+exports.prodBuild = gulp.series(
+  concatJs,
+  minifyJs,
+  minifyCSS,
+  addCssToMinifiedCode,
+  prependUserScriptToMinifiedCode,
+
+  greasyForkBuild,
+);
+
+exports.greasyForkBuild = greasyForkBuild;
